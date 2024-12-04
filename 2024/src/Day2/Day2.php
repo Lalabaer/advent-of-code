@@ -7,20 +7,20 @@ use Exception;
 class Day2 {
     public function main(string $filename) {
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
-        $originalLinesArray = explode("\n", $input);
+        $originalRowsArray = explode("\n", $input);
         $tryToFixReport = true;
 
-        $safeReports = $this->getNumberOfSafeReports($originalLinesArray);
-        $safeReportsWithCorrection = $this->getNumberOfSafeReports($originalLinesArray, $tryToFixReport);
+        $safeReports = $this->getNumberOfSafeReports($originalRowsArray);
+        $safeReportsWithCorrection = $this->getNumberOfSafeReports($originalRowsArray, $tryToFixReport);
         
         echo "Part1 - Number of safe reports is " . $safeReports . "\n";
         echo "Part2 - Number of safe reports after fixing is " . $safeReportsWithCorrection . "\n";
     }
 
-    private function getNumberOfSafeReports(array $originalLinesArray, bool $tryToFixReport = false): int {
+    private function getNumberOfSafeReports(array $originalRowsArray, bool $tryToFixReport = false): int {
         $safeReports = 0;
 
-        foreach ($originalLinesArray as $line) {
+        foreach ($originalRowsArray as $line) {
             $safe = false;
             $levels = explode(' ', $line);
             $levelDifferences = $this->getDifferencesBetweenLevels($levels);

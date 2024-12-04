@@ -7,11 +7,11 @@ use Exception;
 class Day1 {
     public function main(string $filename) {
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
-        $originalLinesArray = explode("\n", $input);
+        $originalRowsArray = explode("\n", $input);
         $replacedLinesArray = [];
 
         // workable data
-        $orderedLeftAndRightSides = $this->splitAndOrderList($originalLinesArray);
+        $orderedLeftAndRightSides = $this->splitAndOrderList($originalRowsArray);
 
         //part one
         $distances = $this->calculateDistances($orderedLeftAndRightSides);
@@ -26,11 +26,11 @@ class Day1 {
         echo "Part2 - The total distance with similarities is " . $distancePartTwo . "\n";
     }
 
-    private function splitAndOrderList(array $originalLinesArray): array {
+    private function splitAndOrderList(array $originalRowsArray): array {
         $left = [];
         $right = [];
 
-        foreach ($originalLinesArray as $line) {
+        foreach ($originalRowsArray as $line) {
             $parts = preg_split('/\s+/', $line);
             $left[] = $parts[0];
             $right[] = $parts[1];
