@@ -50,17 +50,17 @@ class Day4 {
 
         foreach ($formattedData as $rowIndex => $row) {
             foreach ($row as $characterIndex => $character) {
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex+1][$characterIndex]) && $formattedData[$rowIndex+1][$characterIndex] == 'M' 
-                        && !empty($formattedData[$rowIndex+2][$characterIndex]) && $formattedData[$rowIndex+2][$characterIndex] == 'A'
-                        && !empty($formattedData[$rowIndex+3][$characterIndex]) && $formattedData[$rowIndex+3][$characterIndex] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex+1][$characterIndex]) && $formattedData[$rowIndex+1][$characterIndex] === 'M' 
+                        && !empty($formattedData[$rowIndex+2][$characterIndex]) && $formattedData[$rowIndex+2][$characterIndex] === 'A'
+                        && !empty($formattedData[$rowIndex+3][$characterIndex]) && $formattedData[$rowIndex+3][$characterIndex] === 'S') {
                     $wordCount++;
                 }
 
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex-1][$characterIndex]) && $formattedData[$rowIndex-1][$characterIndex] == 'M' 
-                        && !empty($formattedData[$rowIndex-2][$characterIndex]) && $formattedData[$rowIndex-2][$characterIndex] == 'A'
-                        && !empty($formattedData[$rowIndex-3][$characterIndex]) && $formattedData[$rowIndex-3][$characterIndex] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex-1][$characterIndex]) && $formattedData[$rowIndex-1][$characterIndex] === 'M' 
+                        && !empty($formattedData[$rowIndex-2][$characterIndex]) && $formattedData[$rowIndex-2][$characterIndex] === 'A'
+                        && !empty($formattedData[$rowIndex-3][$characterIndex]) && $formattedData[$rowIndex-3][$characterIndex] === 'S') {
                     $wordCount++;
                 }
             }
@@ -80,31 +80,31 @@ class Day4 {
                  * . A . . . . .
                  * S . . . . . .
                  */
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex+1][$characterIndex-1]) && $formattedData[$rowIndex+1][$characterIndex-1] == 'M' 
-                        && !empty($formattedData[$rowIndex+2][$characterIndex-2]) && $formattedData[$rowIndex+2][$characterIndex-2] == 'A'
-                        && !empty($formattedData[$rowIndex+3][$characterIndex-3]) && $formattedData[$rowIndex+3][$characterIndex-3] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex+1][$characterIndex-1]) && $formattedData[$rowIndex+1][$characterIndex-1] === 'M' 
+                        && !empty($formattedData[$rowIndex+2][$characterIndex-2]) && $formattedData[$rowIndex+2][$characterIndex-2] === 'A'
+                        && !empty($formattedData[$rowIndex+3][$characterIndex-3]) && $formattedData[$rowIndex+3][$characterIndex-3] === 'S') {
                     $wordCount++;
                 }
 
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex+1][$characterIndex+1]) && $formattedData[$rowIndex+1][$characterIndex+1] == 'M' 
-                        && !empty($formattedData[$rowIndex+2][$characterIndex+2]) && $formattedData[$rowIndex+2][$characterIndex+2] == 'A'
-                        && !empty($formattedData[$rowIndex+3][$characterIndex+3]) && $formattedData[$rowIndex+3][$characterIndex+3] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex+1][$characterIndex+1]) && $formattedData[$rowIndex+1][$characterIndex+1] === 'M' 
+                        && !empty($formattedData[$rowIndex+2][$characterIndex+2]) && $formattedData[$rowIndex+2][$characterIndex+2] === 'A'
+                        && !empty($formattedData[$rowIndex+3][$characterIndex+3]) && $formattedData[$rowIndex+3][$characterIndex+3] === 'S') {
                     $wordCount++;
                 }
 
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex-1][$characterIndex+1]) && $formattedData[$rowIndex-1][$characterIndex+1] == 'M' 
-                        && !empty($formattedData[$rowIndex-2][$characterIndex+2]) && $formattedData[$rowIndex-2][$characterIndex+2] == 'A'
-                        && !empty($formattedData[$rowIndex-3][$characterIndex+3]) && $formattedData[$rowIndex-3][$characterIndex+3] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex-1][$characterIndex+1]) && $formattedData[$rowIndex-1][$characterIndex+1] === 'M' 
+                        && !empty($formattedData[$rowIndex-2][$characterIndex+2]) && $formattedData[$rowIndex-2][$characterIndex+2] === 'A'
+                        && !empty($formattedData[$rowIndex-3][$characterIndex+3]) && $formattedData[$rowIndex-3][$characterIndex+3] === 'S') {
                     $wordCount++;
                 }
 
-                if ($character == 'X' 
-                        && !empty($formattedData[$rowIndex-1][$characterIndex-1]) && $formattedData[$rowIndex-1][$characterIndex-1] == 'M' 
-                        && !empty($formattedData[$rowIndex-2][$characterIndex-2]) && $formattedData[$rowIndex-2][$characterIndex-2] == 'A'
-                        && !empty($formattedData[$rowIndex-3][$characterIndex-3]) && $formattedData[$rowIndex-3][$characterIndex-3] == 'S') {
+                if ($character === 'X' 
+                        && !empty($formattedData[$rowIndex-1][$characterIndex-1]) && $formattedData[$rowIndex-1][$characterIndex-1] === 'M' 
+                        && !empty($formattedData[$rowIndex-2][$characterIndex-2]) && $formattedData[$rowIndex-2][$characterIndex-2] === 'A'
+                        && !empty($formattedData[$rowIndex-3][$characterIndex-3]) && $formattedData[$rowIndex-3][$characterIndex-3] === 'S') {
                     $wordCount++;
                 }
             }
@@ -123,11 +123,11 @@ class Day4 {
                 $characterBottomRight = !empty($formattedData[$rowIndex+1][$characterIndex+1]) ? $formattedData[$rowIndex+1][$characterIndex+1] : '';
                 $characterBottomLeft = !empty($formattedData[$rowIndex+1][$characterIndex-1]) ? $formattedData[$rowIndex+1][$characterIndex-1] : '';
 
-                if ($character == 'A' && (
-                        ($characterTopLeft == 'M' && $characterTopRight == 'S' && $characterBottomRight == 'S' && $characterBottomLeft == 'M') ||
-                        ($characterTopLeft == 'S' && $characterTopRight == 'M' && $characterBottomRight == 'M' && $characterBottomLeft == 'S') ||
-                        ($characterTopLeft == 'S' && $characterTopRight == 'S' && $characterBottomRight == 'M' && $characterBottomLeft == 'M') ||
-                        ($characterTopLeft == 'M' && $characterTopRight == 'M' && $characterBottomRight == 'S' && $characterBottomLeft == 'S'))) {
+                if ($character === 'A' && (
+                        ($characterTopLeft === 'M' && $characterTopRight === 'S' && $characterBottomRight === 'S' && $characterBottomLeft === 'M') ||
+                        ($characterTopLeft === 'S' && $characterTopRight === 'M' && $characterBottomRight === 'M' && $characterBottomLeft === 'S') ||
+                        ($characterTopLeft === 'S' && $characterTopRight === 'S' && $characterBottomRight === 'M' && $characterBottomLeft === 'M') ||
+                        ($characterTopLeft === 'M' && $characterTopRight === 'M' && $characterBottomRight === 'S' && $characterBottomLeft === 'S'))) {
                     $wordCount++;
                 }
             }
