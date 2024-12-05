@@ -22,7 +22,7 @@ class Day1 {
         $distancePartTwo = $this->calculateTotalDistanceBasedOnSimilarities($orderedLeftAndRightSides['left'], $similarities);
 
 
-        echo "Part1 - The total distance is " . $calculateTotalDistancePartOne . "\n"; 
+        echo "Part1 - The total distance is " . $calculateTotalDistancePartOne . "\n";
         echo "Part2 - The total distance with similarities is " . $distancePartTwo . "\n";
     }
 
