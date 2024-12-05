@@ -1,4 +1,8 @@
-# advent-of-code
+# Advent of Code
+
+[About Advent of Code](https://adventofcode.com/2024/about)
+
+[https://adventofcode.com](https://adventofcode.com)
 
 Solutions tested with PHP 8.3.6.
 
