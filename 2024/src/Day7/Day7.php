@@ -13,7 +13,7 @@ class Day7 {
         $validEquationsWithConcatenationSum = $this->getSumOfValidEquations($data, true);
 
         echo "Part1 - The total calibration result of valid equations is " . $validEquationsSum . "\n";
-        echo "Part2 - The total calibration result of valid equations is " . $validEquationsWithConcatenationSum . "\n";
+        echo "Part2 - The total calibration result of valid equations with concatinations is " . $validEquationsWithConcatenationSum . "\n";
     }
 
     private function parseInputData($originalRowsArray): array {
