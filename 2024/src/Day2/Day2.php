@@ -6,6 +6,8 @@ use Exception;
 
 class Day2 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $originalRowsArray = explode("\n", $input);
         $tryToFixReport = true;
@@ -15,6 +17,8 @@ class Day2 {
         
         echo "Part1 - Number of safe reports is " . $safeReports . "\n";
         echo "Part2 - Number of safe reports after fixing is " . $safeReportsWithCorrection . "\n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function getNumberOfSafeReports(array $originalRowsArray, bool $tryToFixReport = false): int {

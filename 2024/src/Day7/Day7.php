@@ -6,6 +6,8 @@ use Exception;
 
 class Day7 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $originalRowsArray = explode("\n", $input);
         $data = $this->parseInputData($originalRowsArray);
@@ -14,6 +16,8 @@ class Day7 {
 
         echo "Part1 - The total calibration result of valid equations is " . $validEquationsSum . "\n";
         echo "Part2 - The total calibration result of valid equations with concatinations is " . $validEquationsWithConcatenationSum . "\n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function parseInputData($originalRowsArray): array {
@@ -51,19 +55,16 @@ class Day7 {
 
             for ($i = 1; $i < $countNumbers; $i++) {
                 if (!empty($children[$i-1])) {
-
                     foreach ($children[$i-1] as $child) {
-                        $children[$i][] = $child > $result
-                            ? $child
-                            : $this->calculate($child, $numbers[$i], '+');
-                        $children[$i][] = $child > $result
-                            ? $child
-                            : $this->calculate($child, $numbers[$i], '*');
+                        if ($child > $result) {
+                            continue;
+                        }
+
+                        $children[$i][] = $this->calculate($child, $numbers[$i], '+');
+                        $children[$i][] = $this->calculate($child, $numbers[$i], '*');
 
                         if ($concatenation) {
-                            $children[$i][] = $child > $result
-                            ? $child
-                            : $this->calculate($child, $numbers[$i], '||');
+                            $children[$i][] = $this->calculate($child, $numbers[$i], '||');
                         }
                     }
                 }

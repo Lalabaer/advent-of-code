@@ -6,6 +6,8 @@ use Exception;
 
 class Day5 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $updateOrderingRulesAndUpdates = explode("\n\n", $input);
         $updateOrderingRules = explode("\n", $updateOrderingRulesAndUpdates[0]);
@@ -23,7 +25,9 @@ class Day5 {
         $sumFixedUpdates = empty($fixedUpdates) ? 0 : $this->calculateMiddleNumbers($fixedUpdates);
 
         echo "Part1 - The sum of middle page numbers of correct updates is " . $sumCorrectUpdates . "\n";
-        echo "Part1 - The sum of middle page numbers of fixed updates is " . $sumFixedUpdates . "\n";
+        echo "Part2 - The sum of middle page numbers of fixed updates is " . $sumFixedUpdates . "\n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function combineRulesByIndex(array $updateOrderingRules) {

@@ -6,6 +6,8 @@ use Exception;
 
 class Day1 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+        
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $originalRowsArray = explode("\n", $input);
         $replacedLinesArray = [];
@@ -21,9 +23,10 @@ class Day1 {
         $similarities = array_count_values($orderedLeftAndRightSides['right']);
         $distancePartTwo = $this->calculateTotalDistanceBasedOnSimilarities($orderedLeftAndRightSides['left'], $similarities);
 
-
         echo "Part1 - The total distance is " . $calculateTotalDistancePartOne . "\n";
         echo "Part2 - The total distance with similarities is " . $distancePartTwo . "\n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function splitAndOrderList(array $originalRowsArray): array {

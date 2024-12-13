@@ -6,6 +6,8 @@ use Exception;
 
 class Day6 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $originalRowsArray = explode("\n", $input);
         $matrix = $this->splitStringRows($originalRowsArray);
@@ -16,6 +18,8 @@ class Day6 {
 
         echo "Part1 - The guard visited " . count($path) . " distinct positions on the map. \n";
         echo "Part2 - There are " . count($obstructions) . " different positions to put an obstruction which results in a loop. \n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function splitStringRows(array $originalRowsArray): array {

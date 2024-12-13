@@ -6,12 +6,16 @@ use Exception;
 
 class Day4 {
     public function main(string $filename) {
+        $startTime = microtime(true);
+
         $input = file_get_contents(__DIR__.'/'.$filename) ?: throw new Exception('Can not read input file');
         $originalRowsArray = explode("\n", $input);
         $wordCounts = $this->findXmasOccurrences($originalRowsArray);
 
         echo "Part1 - I count XMAS " . $wordCounts[1] . " times, how about you? \n"; 
-        echo "Part2 - Ahhh... it's X-MAS: I count it " . $wordCounts[2] . " times. \n"; 
+        echo "Part2 - Ahhh... it's X-MAS: I count it " . $wordCounts[2] . " times. \n";
+
+        echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
     private function formatData(array $formattedData, string $row, int $index): array {
