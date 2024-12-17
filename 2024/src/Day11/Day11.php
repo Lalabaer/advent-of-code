@@ -15,13 +15,13 @@ class Day11 {
         // part 1
         $blinks = 25;
         $stonesAfterBlinks = $this->blinkReturnsArrayWithStones($stones, $blinks, $debug);
-        echo "Final amount of stones: " . count($stonesAfterBlinks) . " after $blinks blinks \n";
+        echo "Part1 - inal amount of stones: " . count($stonesAfterBlinks) . " after $blinks blinks \n";
         echo (microtime(true) - $startTime) * 1000, " ms \n";
 
         // part 2
         $blinks = 75;
         $stonesAfterBlinks = $this->getBlinkRecursive($stones, $blinks);
-        echo "Final amount of stones: " . $stonesAfterBlinks . " after $blinks blinks \n";
+        echo "Part2 - Final amount of stones: " . $stonesAfterBlinks . " after $blinks blinks \n";
         echo (microtime(true) - $startTime) * 1000, " ms \n";
     }
 
@@ -40,8 +40,10 @@ class Day11 {
             return 1;
         }
 
-        if (isset($this->cache["$stone|$currentBlink"])) {
-            return $this->cache["$stone|$currentBlink"];
+        $cacheKey = "$stone|$currentBlink";
+
+        if (isset($this->cache[$cacheKey])) {
+            return $this->cache[$cacheKey];
         }
 
         $stoneStr = (string)$stone;
@@ -57,7 +59,7 @@ class Day11 {
             $result = $this->blink($stone * 2024, $currentBlink + 1, $maxBlinks);
         }
 
-        $this->cache["$stone|$currentBlink"] = $result;
+        $this->cache[$cacheKey] = $result;
 
         return $result;
     }
