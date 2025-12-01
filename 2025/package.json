@@ -1,0 +1,25 @@
+{
+    "name": "advent-of-code-2025",
+    "version": "0.0.1",
+    "description": "Advent of code 2025 solutions - 12 days of christmas",
+    "type": "module",
+    "main": "index.ts",
+    "scripts": {
+        "dev": "node --no-deprecation --loader ts-node/esm index.ts",
+        "build": "tsc",
+        "start": "yarn build && node dist/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^22.15.17",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.0.0"
+    },
+    "packageManager": "yarn@4.6.0+sha256.eaf1eeabc164a44ca0b65dbdccd54af7e55f3ff9294b3ff318d5aaec92f2b20b",
+    "dependencies": {
+        "chalk": "^5.6.2",
+        "commander": "^14.0.2"
+    }
+}
