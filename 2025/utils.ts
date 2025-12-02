@@ -13,6 +13,7 @@ export const getDayInput = async (dayNumber: number | string, fileName = 'exampl
     }
 }
 
-export const readLines = async (input: string): Promise<string[]> => {
-    return input.trim().split('\n')
+export const splitBy = async (input: string, splitBy?: string): Promise<string[]> => {
+    splitBy = splitBy ? splitBy : '\n'
+    return input.trim().split(splitBy)
 }

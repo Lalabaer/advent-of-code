@@ -1,10 +1,10 @@
-import { getDayInput, readLines } from '../utils.js'
+import { getDayInput, splitBy } from '../utils.js'
 import chalk from 'chalk'
 
 export const part1 = async (filename?: string) => {
     console.time('executionTime')
     const input = await getDayInput(1, filename)
-    const lines = await readLines(input)
+    const lines = await splitBy(input)
 
     const answer = countZeroPositions(lines)
     console.timeEnd('executionTime')
@@ -15,7 +15,7 @@ export const part1 = async (filename?: string) => {
 export const part2 = async (filename?: string) => {
     console.time('executionTime')
     const input = await getDayInput(1, filename)
-    const lines = await readLines(input)
+    const lines = await splitBy(input)
 
     const answer = countZeroPositions(lines, true)
     console.timeEnd('executionTime')
