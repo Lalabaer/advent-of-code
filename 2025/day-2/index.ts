@@ -1,4 +1,4 @@
-import { getDayInput, splitBy } from '../utils.js'
+import { getDayInput, splitBy, sumNumbers } from '../utils.js'
 
 import chalk from 'chalk'
 
@@ -7,7 +7,7 @@ export const part1 = async (filename?: string) => {
     const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')
     const invalidIds = findMirroredInvalidIds(ranges)
-    const sumOfInvalidIds = sumInvalidIds(invalidIds)
+    const sumOfInvalidIds = sumNumbers(invalidIds)
 
     console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 1 is ${sumOfInvalidIds}`))
@@ -18,7 +18,7 @@ export const part2 = async (filename?: string) => {
     const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')
     const invalidIds = findSequenceInvalidIds(ranges)
-    const sumOfInvalidIds = sumInvalidIds(invalidIds)
+    const sumOfInvalidIds = sumNumbers(invalidIds)
 
     console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 2 is ${sumOfInvalidIds}`))
@@ -92,16 +92,4 @@ const findSequenceInvalidIds = (ranges: string[]): number[] => {
     }
 
     return invalidIds
-}
-
-const sumInvalidIds = (invalidIds: number[]): number => {
-    if (invalidIds.length === 0) return 0
-
-    let sum = 0
-
-    for (let i = 0; i < invalidIds.length; i++) {
-        sum += invalidIds[i]
-    }
-
-    return sum
 }

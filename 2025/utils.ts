@@ -17,3 +17,14 @@ export const splitBy = async (input: string, splitBy?: string): Promise<string[]
     splitBy = splitBy ? splitBy : '\n'
     return input.trim().split(splitBy)
 }
+
+export const sumNumbers = (numbers: number[]): number => {
+    if (!numbers || numbers.length === 0) return 0
+
+    let sum = 0
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i]
+    }
+
+    return sum
+}
