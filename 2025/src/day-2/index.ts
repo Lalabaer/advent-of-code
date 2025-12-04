@@ -1,13 +1,10 @@
-import { getDayInput, splitBy, sumNumbers } from '../utils/utils.js'
+import { splitBy, sumNumbers } from '../utils/utils.js'
 import type { options } from '../types/types.js'
 
 import chalk from 'chalk'
 
-export const part1 = async (options: options) => {
-    const filename = options.filename
-
+export const part1 = async (input: string, options: options) => {
     console.time('executionTime')
-    const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')
     const invalidIds = findMirroredInvalidIds(ranges)
     const sumOfInvalidIds = sumNumbers(invalidIds)
@@ -16,11 +13,8 @@ export const part1 = async (options: options) => {
     console.info(chalk.green(`The solution for part 1 is ${sumOfInvalidIds}`))
 }
 
-export const part2 = async (options: options) => {
-    const filename = options.filename
-
+export const part2 = async (input: string, options: options) => {
     console.time('executionTime')
-    const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')
     const invalidIds = findSequenceInvalidIds(ranges)
     const sumOfInvalidIds = sumNumbers(invalidIds)

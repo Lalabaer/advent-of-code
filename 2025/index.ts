@@ -1,6 +1,7 @@
 import { Command } from 'commander'
 import { access } from 'fs/promises'
 import type { options } from './src/types/types.js'
+import { getDayInput } from './src/utils/utils.js'
 
 import chalk from 'chalk'
 import path from 'path'
@@ -21,6 +22,16 @@ const executeDay = async (day: string, options: options): Promise<void> => {
         process.exit(1)
     }
 
+    let input: string
+
+    try {
+        input = await getDayInput(day, filename)
+    } catch (error) {
+        console.error(chalk.red(`Unable to read input file for day ${day}`))
+        console.error(`Error is: ${error}`)
+        process.exit(1)
+    }
+
     try {
         const daySolution = await import(pathToDaySolution)
 
@@ -29,7 +40,7 @@ const executeDay = async (day: string, options: options): Promise<void> => {
 
             if (daySolution[partName]) {
                 console.log(chalk.green(`Running Part ${part}:`))
-                await daySolution[partName](options)
+                await daySolution[partName](input, options)
             } else {
                 console.error(chalk.red(`Part ${part} not found for day ${day}`))
                 process.exit(1)
@@ -38,12 +49,12 @@ const executeDay = async (day: string, options: options): Promise<void> => {
 
         if (daySolution.part1) {
             console.log(chalk.green('Running Part 1:'))
-            await daySolution.part1(options)
+            await daySolution.part1(input, options)
         }
 
         if (daySolution.part2) {
             console.log(chalk.green('Running Part 2:'))
-            await daySolution.part2(options)
+            await daySolution.part2(input, options)
         }
     } catch (error) {
         console.error(`Error importing solution for day ${day}`)

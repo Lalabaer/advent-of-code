@@ -1,14 +1,12 @@
-import { getDayInput, inputToGrid } from '../utils/utils.js'
+import { inputToGrid } from '../utils/utils.js'
 import type { options } from '../types/types.js'
 
 import chalk from 'chalk'
 
-export const part1 = async (options: options) => {
-    const filename = options.filename
+export const part1 = async (input: string, options: options) => {
     const debug = options.debug
 
     console.time('executionTime')
-    const input = await getDayInput(4, filename)
     const grid = inputToGrid(input)
     const accessibleRolls = getAccessibleRolls(grid, false, debug)
 
@@ -16,12 +14,10 @@ export const part1 = async (options: options) => {
     console.info(chalk.green(`The solution for part 1 is ${accessibleRolls}`))
 }
 
-export const part2 = async (options: options) => {
-    const filename = options.filename
+export const part2 = async (input: string, options: options) => {
     const debug = options.debug
 
     console.time('executionTime')
-    const input = await getDayInput(4, filename)
     const grid = await inputToGrid(input)
     const accessibleRolls = getAccessibleRolls(grid, true, debug)
 
