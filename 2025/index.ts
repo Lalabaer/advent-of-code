@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import { access } from 'fs/promises'
+import type { options } from './src/types/types.js'
 
 import chalk from 'chalk'
 import path from 'path'
@@ -8,8 +9,10 @@ const isCompiled = import.meta.url.includes('/dist/')
 const baseDir = isCompiled ? 'dist' : '.'
 const fileExtension = isCompiled ? '.js' : '.ts'
 
-const executeDay = async (day: string, part?: string, filename?: string): Promise<void> => {
-    const pathToDaySolution = path.resolve(process.cwd(), baseDir, `day-${day}`, `index${fileExtension}`)
+const executeDay = async (day: string, options: options): Promise<void> => {
+    const pathToDaySolution = path.resolve(process.cwd(), baseDir, `src/day-${day}`, `index${fileExtension}`)
+    const part = options.part
+    const filename = options.filename
 
     try {
         await access(pathToDaySolution)
@@ -26,7 +29,7 @@ const executeDay = async (day: string, part?: string, filename?: string): Promis
 
             if (daySolution[partName]) {
                 console.log(chalk.green(`Running Part ${part}:`))
-                await daySolution[partName](filename)
+                await daySolution[partName](options)
             } else {
                 console.error(chalk.red(`Part ${part} not found for day ${day}`))
                 process.exit(1)
@@ -35,12 +38,12 @@ const executeDay = async (day: string, part?: string, filename?: string): Promis
 
         if (daySolution.part1) {
             console.log(chalk.green('Running Part 1:'))
-            await daySolution.part1(filename)
+            await daySolution.part1(options)
         }
 
         if (daySolution.part2) {
             console.log(chalk.green('Running Part 2:'))
-            await daySolution.part2(filename)
+            await daySolution.part2(options)
         }
     } catch (error) {
         console.error(`Error importing solution for day ${day}`)
@@ -57,13 +60,14 @@ program
     .argument('[day]', 'Day number to run (1-25)')
     .option('-p, --part <number>', 'Run specific part (1 or 2)')
     .option('-f --filename <string>', 'Allows specifying the input file name')
-    .action(async (day: string | undefined, options: { part?: string; filename?: string }) => {
+    .option('-d --debug <boolean>', 'Sets debug flag and will print some output in tasks')
+    .action(async (day: string | undefined, options: options) => {
         if (!day) {
             console.info('No day specified! Please provide a day number (1-25).')
             return
         }
 
-        await executeDay(day, options.part, options.filename)
+        await executeDay(day, options)
     })
 
 program.parse()

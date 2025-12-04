@@ -1,7 +1,10 @@
-import { getDayInput, splitBy } from '../utils.js'
+import { getDayInput, splitBy } from '../utils/utils.js'
 import chalk from 'chalk'
+import type { options } from '../types/types.js'
 
-export const part1 = async (filename?: string) => {
+export const part1 = async (options: options) => {
+    const filename = options.filename
+
     console.time('executionTime')
     const input = await getDayInput(1, filename)
     const lines = await splitBy(input)
@@ -12,7 +15,9 @@ export const part1 = async (filename?: string) => {
     console.info(chalk.green(`The solution for part 1 is ${answer}`))
 }
 
-export const part2 = async (filename?: string) => {
+export const part2 = async (options: options) => {
+    const filename = options.filename
+
     console.time('executionTime')
     const input = await getDayInput(1, filename)
     const lines = await splitBy(input)

@@ -1,8 +1,11 @@
-import { getDayInput, splitBy, sumNumbers } from '../utils.js'
+import { getDayInput, splitBy, sumNumbers } from '../utils/utils.js'
+import type { options } from '../types/types.js'
 
 import chalk from 'chalk'
 
-export const part1 = async (filename?: string) => {
+export const part1 = async (options: options) => {
+    const filename = options.filename
+
     console.time('executionTime')
     const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')
@@ -13,7 +16,9 @@ export const part1 = async (filename?: string) => {
     console.info(chalk.green(`The solution for part 1 is ${sumOfInvalidIds}`))
 }
 
-export const part2 = async (filename?: string) => {
+export const part2 = async (options: options) => {
+    const filename = options.filename
+
     console.time('executionTime')
     const input = await getDayInput(2, filename)
     const ranges = await splitBy(input, ',')

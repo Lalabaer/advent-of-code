@@ -1,3 +1,6 @@
+src/day-*/input_data.txt
+src/day-*/README.md
+
 # Dependencies
 node_modules/
 .pnp

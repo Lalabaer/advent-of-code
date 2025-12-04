@@ -2,7 +2,7 @@ import { readFile } from 'fs/promises'
 import path from 'path'
 
 export const getDayInput = async (dayNumber: number | string, fileName = 'example_data.txt'): Promise<string> => {
-    const filePath = path.resolve(process.cwd(), `day-${dayNumber}`, fileName)
+    const filePath = path.resolve(process.cwd(), `src/day-${dayNumber}`, fileName)
 
     try {
         const fileContents = await readFile(filePath, 'utf8')
@@ -27,4 +27,11 @@ export const sumNumbers = (numbers: number[]): number => {
     }
 
     return sum
+}
+
+export const inputToGrid = (input: string): string[][] => {
+    return input
+        .trim()
+        .split('\n')
+        .map((line) => line.split(''))
 }
