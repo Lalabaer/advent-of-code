@@ -1,5 +1,6 @@
 import chalk from 'chalk'
-import type { options } from '../src/types/types.js'
+// @ts-expect-error
+import type { options } from '../types/types.js'
 
 export const part1 = async (input: string, options: options) => {
     // TODO: Implement part 1 solution
