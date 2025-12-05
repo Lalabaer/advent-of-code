@@ -4,25 +4,21 @@ import type { options } from '../types/types.js'
 import chalk from 'chalk'
 
 export const part1 = async (input: string, options: options) => {
-    console.time('executionTime')
     const banks = await splitBy(input)
 
     const jolatges = findLargestPossibleJoltagesByUsingTwoBatteries(banks)
     const answer = sumNumbers(jolatges)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 1 is ${answer}`))
 }
 
 export const part2 = async (input: string, options: options) => {
-    console.time('executionTime')
     const banks = await splitBy(input)
     const targetNumberOfUsedBatteries = 12
 
     const jolatges = findLargestPossibleJoltagesByUsingTwelveBatteries(banks, targetNumberOfUsedBatteries)
     const answer = sumNumbers(jolatges)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 2 is ${answer}`))
 }
 

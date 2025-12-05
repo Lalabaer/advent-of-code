@@ -3,21 +3,17 @@ import chalk from 'chalk'
 import type { options } from '../types/types.js'
 
 export const part1 = async (input: string, options: options) => {
-    console.time('executionTime')
     const lines = await splitBy(input)
 
     const answer = countZeroPositions(lines)
-    console.timeEnd('executionTime')
 
     console.info(chalk.green(`The solution for part 1 is ${answer}`))
 }
 
 export const part2 = async (input: string, options: options) => {
-    console.time('executionTime')
     const lines = await splitBy(input)
 
     const answer = countZeroPositions(lines, true)
-    console.timeEnd('executionTime')
 
     console.info(chalk.green(`The solution for part 2 is ${answer}`))
 }

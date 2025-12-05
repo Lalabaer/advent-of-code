@@ -35,26 +35,36 @@ const executeDay = async (day: string, options: options): Promise<void> => {
     try {
         const daySolution = await import(pathToDaySolution)
 
+        const runPart = async (partName: string, partNumber: string) => {
+            const partFunction = daySolution[partName as keyof typeof daySolution]
+
+            if (partFunction) {
+                console.log(chalk.green(`Running Part ${partNumber}:`))
+
+                if (options.time) {
+                    console.time('executionTime')
+                }
+
+                await partFunction(input, options)
+
+                if (options.time) {
+                    console.timeEnd('executionTime')
+                }
+            }
+        }
+
         if (part) {
             const partName = `part${part}` as keyof typeof daySolution
 
             if (daySolution[partName]) {
-                console.log(chalk.green(`Running Part ${part}:`))
-                await daySolution[partName](input, options)
+                await runPart(`part${part}`, part)
             } else {
                 console.error(chalk.red(`Part ${part} not found for day ${day}`))
                 process.exit(1)
             }
-        }
-
-        if (daySolution.part1) {
-            console.log(chalk.green('Running Part 1:'))
-            await daySolution.part1(input, options)
-        }
-
-        if (daySolution.part2) {
-            console.log(chalk.green('Running Part 2:'))
-            await daySolution.part2(input, options)
+        } else {
+            await runPart('part1', '1')
+            await runPart('part2', '2')
         }
     } catch (error) {
         console.error(`Error importing solution for day ${day}`)
@@ -72,6 +82,7 @@ program
     .option('-p, --part <number>', 'Run specific part (1 or 2)')
     .option('-f --filename <string>', 'Allows specifying the input file name')
     .option('-d --debug <boolean>', 'Sets debug flag and will print some output in tasks')
+    .option('-t, --time', 'Displays execution time for each part')
     .action(async (day: string | undefined, options: options) => {
         if (!day) {
             console.info('No day specified! Please provide a day number (1-25).')

@@ -4,22 +4,18 @@ import type { options } from '../types/types.js'
 import chalk from 'chalk'
 
 export const part1 = async (input: string, options: options) => {
-    console.time('executionTime')
     const ranges = await splitBy(input, ',')
     const invalidIds = findMirroredInvalidIds(ranges)
     const sumOfInvalidIds = sumNumbers(invalidIds)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 1 is ${sumOfInvalidIds}`))
 }
 
 export const part2 = async (input: string, options: options) => {
-    console.time('executionTime')
     const ranges = await splitBy(input, ',')
     const invalidIds = findSequenceInvalidIds(ranges)
     const sumOfInvalidIds = sumNumbers(invalidIds)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 2 is ${sumOfInvalidIds}`))
 }
 

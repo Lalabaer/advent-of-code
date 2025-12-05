@@ -6,22 +6,18 @@ import chalk from 'chalk'
 export const part1 = async (input: string, options: options) => {
     const debug = options.debug
 
-    console.time('executionTime')
     const grid = inputToGrid(input)
     const accessibleRolls = getAccessibleRolls(grid, false, debug)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 1 is ${accessibleRolls}`))
 }
 
 export const part2 = async (input: string, options: options) => {
     const debug = options.debug
 
-    console.time('executionTime')
     const grid = await inputToGrid(input)
     const accessibleRolls = getAccessibleRolls(grid, true, debug)
 
-    console.timeEnd('executionTime')
     console.info(chalk.green(`The solution for part 2 is ${accessibleRolls}`))
 }
 
