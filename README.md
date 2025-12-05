@@ -6,7 +6,7 @@
 
 [About Advent of Code](https://adventofcode.com/2025/about)
 
--   Solutions tested with node v22.0.0
+-   Solutions tested with node v24.11.1
 
 Replace DAY with the day you want to get results for and run the following command on your terminal:
 
@@ -30,10 +30,12 @@ Arguments:
 day Day number to run (1-25)
 
 Options:
--V, --version output the version number
--p, --part <number> Run specific part (1 or 2)
--f --filename <string> Allows specifying the input file name
--h, --help display help for command
+-V, --version           output the version number
+-p, --part <number>     Run specific part (1 or 2)
+-f --filename <string>  Allows specifying the input file name
+-d --debug <boolean>    Sets debug flag and will print some output in tasks
+-t, --time              Displays execution time for each part
+-h, --help              display help for command
 ```
 
 ## 2024 - PHP
