@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import type { options } from '../types/types.js'
 
 export const part1 = async (input: string, options: options) => {
-    const lines = await splitBy(input)
+    const lines = splitBy(input)
 
     const answer = countZeroPositions(lines)
 
@@ -11,7 +11,7 @@ export const part1 = async (input: string, options: options) => {
 }
 
 export const part2 = async (input: string, options: options) => {
-    const lines = await splitBy(input)
+    const lines = splitBy(input)
 
     const answer = countZeroPositions(lines, true)
 

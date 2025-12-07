@@ -11,7 +11,7 @@ type ranges = {
 export const part1 = async (input: string, _options: options) => {
     const { rangesString, idsString } = await parseInput(input)
     const ranges = sortRanges(await parseRanges(rangesString))
-    const ids = (await splitBy(idsString)).map(Number)
+    const ids = splitBy(idsString).map(Number)
     const freshIdsCount = getNumberOfFreshIds(ranges, ids)
 
     console.info(chalk.green(`The solution for part 1 is ${freshIdsCount}`))
@@ -27,15 +27,15 @@ export const part2 = async (input: string, _options: options) => {
 }
 
 const parseInput = async (input: string) => {
-    const [rangesString, idsString] = await splitBy(input, '\n\n')
+    const [rangesString, idsString] = splitBy(input, '\n\n')
     return { rangesString, idsString }
 }
 
 const parseRanges = async (rangesString: string): Promise<ranges[]> => {
     const ranges: ranges[] = []
 
-    for (const range of await splitBy(rangesString)) {
-        const [start, end] = (await splitBy(range, '-')).map(Number)
+    for (const range of splitBy(rangesString)) {
+        const [start, end] = splitBy(range, '-').map(Number)
         ranges.push({ start, end })
     }
 
