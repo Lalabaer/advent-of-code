@@ -5,18 +5,22 @@ import chalk from 'chalk'
 
 export const part1 = async (input: string, _options: options) => {
     const lines: string[][] = splitBy(input).map((line) => splitBy(line.trim(), /\s+/))
-    const columnResults: number[] = calculateResultsPerColumn(lines)
-    const answer = sumNumbers(columnResults)
+    const operators: string[] = lines.pop() ?? []
+    const problems: number[][] = parseProblems(lines)
+
+    const results: number[] = calculateProblemResults(operators, problems)
+    const answer = sumNumbers(results)
 
     console.info(chalk.green(`The solution for part 1 is ${answer}`))
 }
 
 export const part2 = async (input: string, _options: options) => {
     const lines: string[] = splitBy(input)
-    const operators: string[] = lines.splice(lines.length - 1)
+    const operators: string = lines.pop() ?? ''
+    const reverseOperators: string[] = splitBy(operators, /\s+/).reverse()
     const problems: number[][] = parseProblemsRightToLeft(lines)
 
-    const results: number[] = calculateProblemResults(operators, problems)
+    const results: number[] = calculateProblemResults(reverseOperators, problems)
     const answer = sumNumbers(results)
 
     console.info(chalk.green(`The solution for part 2 is ${answer}`))
@@ -33,25 +37,16 @@ const operate = (firstNumber: number, secondNumber: number, operator: string): n
     }
 }
 
-const calculateResultsPerColumn = (lines: string[][]): number[] => {
-    const problemResults: number[] = []
-    const operators = lines[lines.length - 1]
-    const rowsCount = lines.length - 1
-    const columnsCount = lines[0].length
+const parseProblems = (lines: string[][]): number[][] => {
+    const problems: number[][] = []
+    const columnCount = lines[0].length
 
-    for (let columnNumber = 0; columnNumber < columnsCount; columnNumber++) {
-        const operator = operators[columnNumber]
-        let result: number = parseInt(lines[0][columnNumber])
-
-        for (let rowIndex = 1; rowIndex < rowsCount; rowIndex++) {
-            const nextNumber = parseInt(lines[rowIndex][columnNumber])
-            result = operate(result, nextNumber, operator)
-        }
-
-        problemResults.push(result)
+    for (let col = 0; col < columnCount; col++) {
+        const numbers = lines.map((row) => parseInt(row[col]))
+        problems.push(numbers)
     }
 
-    return problemResults
+    return problems
 }
 
 const parseProblemsRightToLeft = (lines: string[]): number[][] => {
@@ -86,16 +81,14 @@ const parseProblemsRightToLeft = (lines: string[]): number[][] => {
 
 const calculateProblemResults = (operators: string[], problems: number[][]): number[] => {
     const results: number[] = []
-
-    const reverseOperators = splitBy(operators[0], /\s+/).reverse()
-    const operatorsLength = reverseOperators.length
+    const operatorsLength = operators.length
 
     for (let i = 0; i < operatorsLength; i++) {
         const problemsLength = problems[i].length
         let result: number = problems[i][0]
 
         for (let j = 1; j < problemsLength; j++) {
-            result = operate(result, problems[i][j], reverseOperators[i])
+            result = operate(result, problems[i][j], operators[i])
         }
 
         results.push(result)
