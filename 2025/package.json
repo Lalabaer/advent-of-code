@@ -1,29 +1,30 @@
 {
-    "name": "advent-of-code-2025",
-    "version": "0.0.1",
-    "description": "Advent of code 2025 solutions - 12 days of christmas",
-    "type": "module",
-    "main": "index.ts",
-    "scripts": {
-        "dev": "node --no-deprecation --loader ts-node/esm index.ts",
-        "build": "tsc",
-        "create-day": "node scripts/create-day.js",
-        "start": "yarn build && node dist/index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "devDependencies": {
-        "@types/node": "^24.10.1",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.9.3"
-    },
-    "engines": {
-        "node": "^24.11.1"
-    },
-    "packageManager": "yarn@4.12.0",
-    "dependencies": {
-        "chalk": "^5.6.2",
-        "commander": "^14.0.2"
-    }
+  "name": "advent-of-code-2025",
+  "version": "0.0.1",
+  "description": "Advent of code 2025 solutions - 12 days of christmas",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "node --no-deprecation --loader ts-node/esm index.ts",
+    "build": "tsc",
+    "create-day": "node scripts/create-day.js",
+    "start": "yarn build && node dist/index.js",
+    "sync-node-version": "node scripts/sync-node-version"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": "^24.11.1"
+  },
+  "packageManager": "yarn@4.12.0",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2"
+  }
 }
